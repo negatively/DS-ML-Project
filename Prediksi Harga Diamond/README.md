@@ -1,30 +1,15 @@
-# Visualisasi Sejarah Penghargaan Nobel
-Penghargaan Nobel mungkin merupakan penghargaan ilmiah paling bergengsi di dunia. Penghargaan tersebut setiap tahun diberikan kepada ilmuwan dan cendekiawan dalam kategori kimia, sastra, fisika, fisiologi atau kedokteran, ekonomi, dan perdamaian. Penghargaan Nobel pertama kali diberikan pada tahun 1901, dan pada saat itu Penghargaan itu masih sangat eurosentris dan berfokus pada laki-laki, tetapi untuk saat ini siapapun sudah dapat menerimanya, apakah itu benar?
+# Prediksi Harga Diamond
+Ketika memiliki sebuah bisnis jual-beli diamonds (berlian) dengan model bisnis distributor dan retail, dimana perusahaan membeli diamond dari produsen kemudian menjualnya kepada konsumen, atau juga menerima penjualan kembali diamonds dari konsumen. Berbeda dengan emas yang harga jual dan belinya mengacu pada harga perdagangan emas dunia, harga diamond dipengaruhi oleh beberapa fitur khusus. Fitur tersebut antara lain, karat, ukuran, bentuk potongan, warna, serta tingkat kejernihan diamonds. Tidak adanya acuan harga diamond seperti acuan harga emas menyebabkan perusahaan memerlukan sistem untuk memprediksi harganya.
 
-<b>Dataset yang digunakan :</b> https://www.kaggle.com/nobelfoundation/nobel-laureates
+<b>Dataset yang digunakan :</b> https://raw.githubusercontent.com/tidyverse/ggplot2/master/data-raw/diamonds.csv
 
-## Perbandingan Penerima berdasarkan Jenis Kelamin
+<b>Algoritma yang diterapkan</b>
+* KNN
+* Random Forest
+* Ada Boost
+  
+<b>Contoh hasil Prediksi</b>
+![Hasil Prediksi](hasil_prediksi.jpg)
 
-![Gender Proportion](male_vs_female.png)
 
-## Penerima Wanita Per Dekade
 
-![Female Each Decade](proportion_female.png)
-
-## Peringkat 5 Besar Negara Penerima Nobel Berdasarkan Kebangsaan
-
-![Nationalies](top_5_nationalities.png)
-
-Berdasarkan grafik tersebut, USA merupakan bangsa yang banyak menerima Penghargaan Nobel. 
-
-## Dominasi USA Untuk Tiap Dekade
-
-![USA Dominance](proportion_us.png)
-
-## Melihat Persebaran Umur pada Penerima Penghargaan Nobel
-
-![Age Distribution](age_distibution.png)
-
-Penerima Penghargaan Nobel Tertua : Leonid Hurwicz pada umur 90 tahun
-
-Penerima Penghargaan Nobel Termuda : Malala Yousafzai pada umur 17 tahun
