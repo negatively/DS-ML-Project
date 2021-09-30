@@ -9,6 +9,7 @@ Ketika memiliki sebuah bisnis jual-beli diamonds (berlian) dengan model bisnis d
 * Ada Boost
   
 <b>Contoh hasil Prediksi</b>
+
 ![Hasil Prediksi](hasil_prediksi.jpg)
 
 
