@@ -36,7 +36,7 @@ Data yang digunakan untuk proyek kali ini adalah Red Wine Dataset yang diunduh d
 * `quality` :  variabel output berdasarkan data sensorik dengan skor dari 0 sampai 10
 
 Kemudian terdapat juga visualisasi tentang korelasi antar kolomnya. 
-
+![Correlation](https://github.com/negatively/DS-ML-Project/blob/main/Wine%20Quality%20Prediction/Image/correlation.png)
 
 
 ## Data Preparation
@@ -45,7 +45,7 @@ Tahap berikutnya adalah _data preparation_, tahap dimana data akan diolah sehing
 * Mengelompokkan data quality menjadi `good` dan `not good`, dimana data yang memiliki label `good` merupakan red wine yang baik untuk kesehatan. Data yang memiliki nilai quality 0 sampai 6 merupakan wine dengan kualitas `not good`. Sedangkan data yang memiliki nilai 7 sampai 10 merupakan wine dengan kualitas `good`.
 * Tidak mengikutkan fitur _residual sugar_, _free sulfur dioxide_, dan _pH_ karena memiliki tingakt korelasi dibawah 0.1 terhadap _quality_
 * Membagi dataset menjadi data _train_ dan data _test_ dengan rasio 80% untuk data _train_ dan 20% untuk data _test_. Tujuan dilakukan pembagian adalah supaya dapat menguji performa model. Dimaana data _train_ digunakan untuk melatih model, sedangkan data _test__ merupakan data yang digunakan untuk menguji model setelah melalui pelatihan data. 
-* Standarisasi pada semua fitur dataset. Standarisasi yang dilakukan adalah menggunakan teknik [StandardScaler](https://scikit-learn.org/0.24/modules/generated/sklearn.preprocessing.MinMaxScaler.html#sklearn.preprocessing.StandardScaler), dimana data akan dikurangi dengan nilai rata-rata kemudian dibagi dengan standar deviasi, sehingga dataset akan memiliki standar deviasi sebesar 1 dan rata-rata sama dengan 0.
+* Standarisasi pada semua fitur dataset. Standarisasi yang dilakukan adalah menggunakan teknik [StandardScaler](https://scikit-learn.org/0.24/modules/generated/sklearn.preprocessing.StandardScaler.html#sklearn.preprocessing.StandardScaler), dimana data akan dikurangi dengan nilai rata-rata kemudian dibagi dengan standar deviasi, sehingga dataset akan memiliki standar deviasi sebesar 1 dan rata-rata sama dengan 0.
 
 ## Modelling
 Setelah dataset diolah, maka proses selanjutnya adalah pemodelan. Tahap yang dilakukan pada proses ini diantaranya adalah pembuatan model baseline dan tuning hyperparameter dengan GridSearchCV.
@@ -62,7 +62,7 @@ Setelah dataset diolah, maka proses selanjutnya adalah pemodelan. Tahap yang dil
 Model yang telah dibuat kemudian dilakukan evaluasi. Karena model merupakan tipe klasifikasi, maka evaluasinya akan digunakan metriks akurasi, _f1-score_, _precision_, dan _recall_.
 * Akurasi
 
-    Akurasi merupakan metrik untuk menghitung nilai ketepatan model dalam memprediksi data dengan data yang sebenarnya. Akurasi dapat dihitung dengan rumus diatas. Kelebihan dari metriks ini adalah sering digunakan dalam kasus pembuatan model klasifikasi baik itu klasifikasi dua kelas, atau kategori. Kekurangan dari metrik ini adalah dapat bersifat 'menyesatkan' pada data yang tidak seimbang.
+    Akurasi merupakan metrik untuk menghitung nilai ketepatan model dalam memprediksi data dengan data yang sebenarnya. Akurasi dapat dihitung dengan rumus diatas. 
 * F1-score
 * Precision
 * Recall
