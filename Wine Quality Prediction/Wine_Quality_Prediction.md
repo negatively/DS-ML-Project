@@ -9,17 +9,23 @@ Kualitas wine merupakan suatu hal yang sangat penting, karena mengkonsumsi wine 
 ### Rumusan Masalah
 Berdasarkan uraian latar belakang yang telah dijelaskan diatas, maka dapat diperoleh rumusan masalah :
 
-*   Bagaimana kinerja _Random Forest_ untuk prediksi kualitas wine?
+* Bagaimana kinerja _Random Forest_ untuk prediksi kualitas wine?
 * Fitur apa yang paling berpengaruh pada penentuan kualitas red wine?
 
 ### Tujuan
-Tujuan dari proyek yang dikerjakan adalah Membuat sistem prediksi kualitas wine yang memiliki tingkat akurasi > 80% untuk membantu orang dalam menentukan kualitas wine.
+Tujuan dari proyek yang dikerjakan adalah :
+* Membuat model prediksi dengan algortima _Random Forest_
+* Melakukan penerapan metrics akurasi, f1-score, precision, dan recall untuk melihat performa prediksi dari model.
+* Mencari tingkat keberpengaruhan fitur-fitur pada model berdasarkan hasil visualisasi.
 
 ### Solusi Permasalahan
 Solusi untuk menyelesaikan permasalahan berdasarkan tujuan proyek adalah :
 * Melakukan pengolahan data pada proses pra-pemrosesan untuk meningkatkan akurasi prediksi.
 * Menggunakan algoritma pemodelan Random Forest sebagai model baseline. Pemilihan algoritma tersebut dipilih karena cocok untuk kasus klasifikasi dam mudah udah digunakan.
 * Model baseline yang sudah dibuat kemudian di kembangkan dengan cara melakukan tuning hyperparameter. Pengaturan tuning hyperparameter yang dilakukan menggunakan `GridSearchCV`. 
+* Menerapkan metrics akurasi, f1-score, precision, dan recall pada model
+* Mencari _feature importances_ pada model yang telha dibuat untuk mengetahui pengaruh dari suatu fitur pada prediksi model.
+
 ## Data Understanding
 Data yang digunakan untuk proyek kali ini adalah Red Wine Dataset yang diunduh dari [dataset Kaggle](https://www.kaggle.com/uciml/red-wine-quality-cortez-et-al-2009). Dataset tersebut memiliki jumlah data sebanyak 1599 baris dengan 11 fitur dan 1 target. Fitur yang dimaksud adalah _fixed acidity_, _volatile acidity_, _citric acid_, _residual sugar_, _chlorides_, _free sulfur dioxide_, _total sulfur dioxide_, _density_, _pH_, _sulphates_, dan _alcohol_ yang bertipe data numerik. Sedangkan _quality_ adalah target yang juga bertipe data numerik. Untuk penjelasan tentang variabel-variabel pada dataset _Red Wine_ dapat dilihat pada poin-poin berikut :
 * `fixed acidity` :  kandungan asam yang bersifat sudah tentu
@@ -36,7 +42,9 @@ Data yang digunakan untuk proyek kali ini adalah Red Wine Dataset yang diunduh d
 * `quality` :  variabel output berdasarkan data sensorik dengan skor dari 0 sampai 10
 
 Kemudian terdapat juga visualisasi tentang korelasi antar kolomnya. 
-![Correlation](https://github.com/negatively/DS-ML-Project/blob/main/Wine%20Quality%20Prediction/Image/correlation.png)
+![correlation](https://user-images.githubusercontent.com/61934759/136343461-dbfc961e-1cc9-41a8-9d32-db4e0b30f56a.png)
+
+Berdasarkan plot heatmap korelasi diatas, fitur yang memiliki korelasi diantara -0.1 sampai 0.1 dengan fitur quality adalah residual sugar, free sulfur dioxide, dan pH. Oleh karena itu fitur tersebut nantinya dapat di drop
 
 
 ## Data Preparation
@@ -51,7 +59,7 @@ Tahap berikutnya adalah _data preparation_, tahap dimana data akan diolah sehing
 Setelah dataset diolah, maka proses selanjutnya adalah pemodelan. Tahap yang dilakukan pada proses ini diantaranya adalah pembuatan model baseline dan tuning hyperparameter dengan GridSearchCV.
 *   Model baseline
     
-    Pada langkah ini dibuat sebuah model Random Forest dengan library scikit-learn RandomForestClassifier. Dalam pemodelan ini model dibuat tanpa parameter tambahan. Di langkah ini model baseline yang sudah dibuat kemudian dikembangkan kinerjanya. Untuk meningkatkan kinerja model maka dilakukan pencarian hyperparameter yang optimal untuk model dengan GridSearchCV. Setelah ditemukan hyperparameter terbaik dari proses GridSearchCV, kemudian diterapkan ke model baseline
+    Pada langkah ini dibuat sebuah model Random Forest dengan library scikit-learn RandomForestClassifier. Dalam pemodelan ini model dibuat tanpa parameter tambahan. 
 
 *   Tuning Hyperparameter
     
@@ -62,14 +70,39 @@ Setelah dataset diolah, maka proses selanjutnya adalah pemodelan. Tahap yang dil
 Model yang telah dibuat kemudian dilakukan evaluasi. Karena model merupakan tipe klasifikasi, maka evaluasinya akan digunakan metriks akurasi, _f1-score_, _precision_, dan _recall_.
 * Akurasi
 
-    Akurasi merupakan metrik untuk menghitung nilai ketepatan model dalam memprediksi data dengan data yang sebenarnya. Akurasi dapat dihitung dengan rumus diatas. 
-* F1-score
+    ![accuracy](https://user-images.githubusercontent.com/61934759/136345298-cbacd820-4397-4941-b2e4-fcc233a146d6.JPG)
+
+    Berdasarkan rumus diatas, akurasi adalah metrics yang merupakan rasio dari prediksi benar (true positive dan true negative) dengan keseluruhan hasil prediksi.
+
 * Precision
+
+    ![prescision](https://user-images.githubusercontent.com/61934759/136345700-cc1cc1d9-9f05-4577-8165-6f368e6cf226.JPG)
+
+    Precision merupakan rasio prediksi true positif dibandingkan dengan keseluruha hasil prediksi yang positif (true positif dan false positif)
 * Recall
 
+    ![recall](https://user-images.githubusercontent.com/61934759/136345694-2c2489bf-de0e-4928-9111-3fe18376078c.JPG)
+
+    Merupakan rasio prediksi benar positif dibandingkan dengan keseluruhan data yang benar positif. 
+
+* F1-score
+
+    ![f1score](https://user-images.githubusercontent.com/61934759/136345295-45395268-e28d-4123-b5f9-85952e061b1d.JPG)
+
+    F1 Score adalah perbandingan rata-rata presisi dan recall yang dibobotkan.Dan kelemahan pada metriks f1-score adalah tidak diperhitungkannya hasil prediksi benar pada label negatif.
+
+Hasil evaluasi pada model baseline dan model tuning adalah sebagai berikut,
+![metriks](https://user-images.githubusercontent.com/61934759/136347152-c44abe10-a652-42a3-aded-55a52727086f.JPG)
+
+Kemudian untuk mencari fitur yang paling berpengaruh, mari kita visualisasikan _feature importances_ dari model,
+![fitur](https://user-images.githubusercontent.com/61934759/136642355-651913a6-0274-40c4-86cc-5b77b0e873bf.JPG)
+
+Dari visualisasi tersebut dapat dilihat bahwa 3 fitur paling berpengaruh pada prediksi kualitasi wine adalah tingkat alcohol, sulphates, dan total sulfur dioxide.
+
 ## Referensi
-* [1] V. Preedy, and M. L. R. Mendez, “Wine Applications with Electronic Noses,” in Electronic Noses and Tongues in Food Science, Cambridge, MA, USA: Academic Press, 2016, pp. 137-151.
-* P. Cortez, A. Cerdeira, F. Almeida, T. Matos and J. Reis. Modeling wine preferences by data mining from physicochemical properties. In Decision Support Systems, Elsevier, 47(4):547-553, 2009.
+* `[1]` V. Preedy, and M. L. R. Mendez, “Wine Applications with Electronic Noses,” in Electronic Noses and Tongues in Food Science, Cambridge, MA, USA: Academic Press, 2016, pp. 137-151.
+* `[2]` P. Shruthi, “Wine Quality Prediction Using Data Mining,” 1st Int. Conf. Adv. Technol. Intell. Control. Environ. Comput. Commun. Eng. ICATIECE 2019, pp. 23–26, 2019, doi: 10.1109/ICATIECE45860.2019.9063846.
+
 
 
 
